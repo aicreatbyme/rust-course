@@ -43,7 +43,7 @@ error[E0502]: cannot borrow `foo` as immutable because it is also borrowed as mu
    |                      ---- mutable borrow later used here
 ```
 
-编译器的提示在这里其实有些难以理解，因为可变借用仅在 `mutate_and_share` 方法内部有效，出了该方法后，就只有返回的不可变借用，因此，按理来说可变借用不应该在 `main` 的作用范围内存在。
+编译器的提示在这里其实有些难以理解，因为可变借用仅在 `mutate_and_share` 方法内部有效，出了该方法后，就只有返回的不可变借用，因此，按理来说可变借用不应该在 `main` 的作用范围内存在。(深一步的解释是当返回了不可变引用时，可变引用的范围已经结束了)
 
 对于这个反直觉的事情，让我们用生命周期来解释下，可能你就很好理解了：
 
